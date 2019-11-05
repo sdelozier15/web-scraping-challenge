@@ -31,11 +31,7 @@ This file scrapes various types of Mars data through a combination of various to
 
 Converted Python scraper script - scrape_mars.py
 
-This file has been converted from the above Jupyter Notebook file into a Python script to scrape the above data. A few adjustments were made:
-
-    Splinter's browser has been made headless for deployment,
-    A dictionary compiles the results of various scraping functions adapted from the Jupyter Notebook file, and
-    Sleep functions were inserted to ensure proper selection of data.
+This file has been converted from the above Jupyter Notebook file into a Python script to scrape the above data. 
 
 Flask app - app.py
 
@@ -47,6 +43,3 @@ This file connects to a MongoDB database and stores the scraped data into it. Th
 HTML file - index.html
 
 This file displays the data gathered via the Flask app, and also arranges the data via a CSS/Bootstrap stylesheet.
-Insights
-
-There are many moving parts, and understanding how they work in tandem is key to better understand the effectiveness of Flask.
