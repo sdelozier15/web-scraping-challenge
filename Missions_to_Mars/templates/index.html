@@ -1,58 +1,71 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name ="viewport" content ="width=device-width", initial-scale=1.0>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mission to Mars</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <meta charset="UTF-8">
+  <title>Scraping Mars</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
-<body>
+
+  <body>
     <div class="container">
-        <div class="jumbotron text-center">
-          <h1>Mission to Mars</h1>
-          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-        </div>
-    
-        <div class="row" id="mars-news">
-          <div class="col-md-12">
-              <h3>Updated Mars News</h3>
-                <h4>{{mars.mars_news}}</h4>
-                    <p>{{mars.mars_text}}</p>
+      <div class = "row">
+        <div class = "col-12">
+          <div class="jumbotron text-center">
+            <a href='/scrape'><h1>Scrape Mars Data</h1></a>
+            <br>
+            <h6>This may take a minute.</h6>
           </div>
         </div>
-        <div class ="row" id="mars-image">
-            <div class = "col-md-8">
-                <h3>Featured Mars Image</h3>
-                <img src = "{{mars.mars_image}}" alt ="Mars Image">
-            </div>
-            <div class = "col-md-4">
-                    <h4>Current Mars Weather</h4>
-                    <p>{{mars.mars_weather}}</p>
-                    <br>
-                    <h4>Mars Facts</h4>
-                    <p>{{mars.mars_facts | safe}}</p>
-                </div>
+      </div>
+      <div class = "row">
+        <div class = "col-6">
+          <h3>Mars News:</h3><br>
+          <h5>{{results.news[0]}}</h5>
+          <p>{{results.news[1]}}</p>
+          <a href="{{results.news[2]}}" target = "_blank"><p>Source</p></a>
         </div>
-        
-        <div class ="row" id="mars-hemispheres">
-            <div class = "col-md-12">
-                <h3><center>Mars Hemispheres</center></h3>
-                {% for hemisphere in mars.mars_hemisphere %}
-                    <div class = "col-md-6">
-                        <div class = "thumbnail">
-                            <img src = "{{hemisphere.img_url}}">
-                                <h3>{{hemisphere.title}}</h3>
-                            </div>
-                        </div>
-                {% endfor %}
-                    </div>
-            
-            </div>
-        </div>
-        </div>
+        <div class = "col-6">
+            <h3>Mars Weather:</h3><br>
+            <p>{{results.weather[0]}}</p>
+            <a href="{{results.weather[1]}}" target = "_blank"><p>Source</p></a>
         </div>
       </div>
-</body>
+      <hr>
+      <div class = "row">
+        <div class = "col-6">
+          <h3>Featured Image:</h3>
+          <a href = "{{results.images[1]}}" target = "_blank">
+            <img src = "{{results.images[0]}}" style = "max-width: 90%;" alt = "Featured Image">
+          </a>
+        </div>
+        <div class = "col-6">
+            <h3>Mars Facts:</h3><br>
+            <table class = "table">{{results.facts | safe}}</table>
+        </div>
+      </div>
+      <hr>
+      <div class = "row">
+        <div class = "col-3">
+          <h6>{{results.hemispheres[0]["title"]}}</h6>
+          <img src = "{{results.hemispheres[0]['url_img']}}" style = "max-width: 90%;" alt = "{{results.hemispheres[0]['title']}}">
+        </div>
+        <div class = "col-3">
+          <h6>{{results.hemispheres[1]["title"]}}</h6>
+          <img src = "{{results.hemispheres[1]['url_img']}}" style = "max-width: 90%;" alt = "{{results.hemispheres[1]['title']}}">
+        </div>
+        <div class = "col-3">
+          <h6>{{results.hemispheres[2]["title"]}}</h6>
+          <img src = "{{results.hemispheres[2]['url_img']}}" style = "max-width: 90%;" alt = "{{results.hemispheres[2]['title']}}">
+        </div>
+        <div class = "col-3">
+          <h6>{{results.hemispheres[3]["title"]}}</h6>
+          <img src = "{{results.hemispheres[3]['url_img']}}" style = "max-width: 90%;" alt = "{{results.hemispheres[3]['title']}}">
+        </div>
+      </div>
+    </div>
+  </body>
+
 </html>
